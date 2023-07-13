@@ -2,10 +2,10 @@
 
 namespace Rmunate\EasyDatatable\Bases;
 
-use Closure;
 use BadMethodCallException;
-use Illuminate\Http\Request;
+use Closure;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Http\Request;
 
 abstract class EasyDataTableBase
 {

@@ -3,13 +3,12 @@
 namespace Rmunate\EasyDatatable;
 
 use Closure;
-use Illuminate\Http\Request;
 use Illuminate\Database\Query\Builder;
-use Rmunate\EasyDatatable\Traits\Init;
-use Rmunate\EasyDatatable\EasyDataTable;
-use Rmunate\EasyDatatable\Traits\Client;
-use Rmunate\EasyDatatable\Exceptions\Exception;
+use Illuminate\Http\Request;
 use Rmunate\EasyDatatable\Bases\EasyDataTableBase;
+use Rmunate\EasyDatatable\Exceptions\Exception;
+use Rmunate\EasyDatatable\Traits\Client;
+use Rmunate\EasyDatatable\Traits\Init;
 
 class EasyDataTable extends EasyDataTableBase
 {
@@ -43,6 +42,7 @@ class EasyDataTable extends EasyDataTableBase
     public function serverSide()
     {
         $this->serverSide = true;
+
         return $this;
     }
 
@@ -54,54 +54,63 @@ class EasyDataTable extends EasyDataTableBase
     public function clientSide()
     {
         $this->serverSide = false;
+
         return $this;
     }
 
     /**
      * Set the request for the EasyDataTable.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return $this
      */
     public function request(Request $request)
     {
         $this->request = $request;
+
         return $this;
     }
 
     /**
      * Set the query for the EasyDataTable.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param \Illuminate\Database\Query\Builder $query
+     *
      * @return $this
      */
     public function query(Builder $query)
     {
         $this->query = $query;
+
         return $this;
     }
 
     /**
      * Set the map closure for the EasyDataTable.
      *
-     * @param  \Closure  $map
+     * @param \Closure $map
+     *
      * @return $this
      */
     public function map(Closure $map)
     {
         $this->map = $map;
+
         return $this;
     }
 
     /**
      * Set the search closure for the EasyDataTable.
      *
-     * @param  \Closure  $search
+     * @param \Closure $search
+     *
      * @return $this
      */
     public function search(Closure $search)
     {
         $this->search = $search;
+
         return $this;
     }
 
@@ -112,16 +121,15 @@ class EasyDataTable extends EasyDataTableBase
      */
     public function response()
     {
-
         if ($this->serverSide) {
             return $this->dataServerSide();
         } else {
             if (!empty($this->search)) {
                 Exception::disabledSearch();
-            } 
+            }
+
             return $this->dataClientSide();
         }
-
     }
 
     /**
@@ -140,7 +148,7 @@ class EasyDataTable extends EasyDataTableBase
         }
 
         return [
-            "data" => $data
+            'data' => $data,
         ];
     }
 
@@ -192,10 +200,10 @@ class EasyDataTable extends EasyDataTableBase
         }
 
         return [
-            "draw" => $this->draw(),
-            "recordsTotal" => $this->query->count(),
-            "recordsFiltered" => $totalFiltered,
-            "data" => $data
+            'draw'            => $this->draw(),
+            'recordsTotal'    => $this->query->count(),
+            'recordsFiltered' => $totalFiltered,
+            'data'            => $data,
         ];
     }
 }

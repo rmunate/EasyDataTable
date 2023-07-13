@@ -31,7 +31,7 @@ trait Client
      */
     public function order()
     {
-        return $this->request->columns[$this->request->input('order.0.column')]["data"];
+        return $this->request->columns[$this->request->input('order.0.column')]['data'];
     }
 
     /**
