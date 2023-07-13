@@ -1,0 +1,34 @@
+{
+    "name": "rmunate/easy-datatable",
+    "description": "Quick and efficient creation of the datatable structure from the Laravel controllers.",
+    "keywords": [
+        "datatable",
+        "easy-datatable"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Rmunate\\EasyDatatable\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Raul Mauricio Uñate Castro"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/support": "^9.0|^10.0"
+    },
+    "require-dev": {
+        
+    },
+    "extra" : {
+        "branch-alias" : {
+            "dev-main": "v1.0.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
