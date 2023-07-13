@@ -112,11 +112,16 @@ class EasyDataTable extends EasyDataTableBase
      */
     public function response()
     {
-        if (!empty($this->search) && $this->clientSide) {
-            Exception::disabledSearch();
+
+        if ($this->serverSide) {
+            return $this->dataServerSide();
+        } else {
+            if (!empty($this->search)) {
+                Exception::disabledSearch();
+            } 
+            return $this->dataClientSide();
         }
 
-        return ($this->serverSide) ? $this->dataServerSide() : $this->dataClientSide();
     }
 
     /**
