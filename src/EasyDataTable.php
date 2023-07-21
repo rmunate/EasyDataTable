@@ -200,10 +200,10 @@ class EasyDataTable extends EasyDataTableBase
         }
 
         return [
-            'draw' => $this->draw(),
-            'recordsTotal' => $this->query->count(),
+            'draw'            => $this->draw(),
+            'recordsTotal'    => $this->query->count(),
             'recordsFiltered' => $totalFiltered,
-            'data' => $data,
+            'data'            => $data,
         ];
     }
 }
