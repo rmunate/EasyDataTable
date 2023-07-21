@@ -132,9 +132,7 @@ public function dataTable(Request $request)
             'novelty_type'   => strtolower($row->novelty_type),
             'description'    => strtolower($row->description),
             'calendar_days'  => $row->calendar_days,
-            'business_days
-
-'  => $row->business_days,
+            'business_days'  => $row->business_days,
             'initial_date'   => date('d/m/Y', strtotime($row->initial_date)),
             'final_date'     => date('d/m/Y', strtotime($row->final_date)),
             "action" => [
@@ -279,9 +277,7 @@ public function dataTable(Request $request)
     In such cases, we can create variables with the additional data we want to send to the front end. 
     In the current example, I will only check if the logged-in user has edit permissions. 
     */
-    $permissionEdit = Auth::user()->can('novedades.edit
-
-ar');
+    $permissionEdit = Auth::user()->can('novedades.editar');
 
     /*
     Now we will start using the library. The first thing we will do is create an object with an instance of EasyDataTable.
