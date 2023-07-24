@@ -31,18 +31,19 @@ class Modulo extends Controller
         $datatable->map(function ($row) use ($permissionEdit) { /* (Opcional)*/
             return [
                 'identification' => $row->identification, /*  */
-                'employee' => strtolower($row->employee),
-                'novelty_type' => strtolower($row->novelty_type),
-                'description' => strtolower($row->description),
-                'calendar_days' => $row->calendar_days,
-                'business_days' => $row->business_days,
-                'initial_date' => date('d/m/Y', strtotime($row->initial_date)),
-                'final_date' => date('d/m/Y', strtotime($row->final_date)),
-                "action" => [
-                    "editar" => $permissionEdit,
+                'employee'       => strtolower($row->employee),
+                'novelty_type'   => strtolower($row->novelty_type),
+                'description'    => strtolower($row->description),
+                'calendar_days'  => $row->calendar_days,
+                'business_days'  => $row->business_days,
+                'initial_date'   => date('d/m/Y', strtotime($row->initial_date)),
+                'final_date'     => date('d/m/Y', strtotime($row->final_date)),
+                'action'         => [
+                    'editar' => $permissionEdit,
                 ],
             ];
         });
+
         return $datatable->response();
     }
 }
