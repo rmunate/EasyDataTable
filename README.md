@@ -1,4 +1,9 @@
 # EasyDataTable: A fast, easy, and efficient way to create the BackEnd for any DataTable. (Laravel PHP Framework) | v1.x
+⚙️ This library is compatible with Laravel versions 8.0 and above ⚙️
+
+[![Laravel 8.0+](https://img.shields.io/badge/Laravel-8.0%2B-orange.svg)](https://laravel.com)
+[![Laravel 9.0+](https://img.shields.io/badge/Laravel-9.0%2B-orange.svg)](https://laravel.com)
+[![Laravel 10.0+](https://img.shields.io/badge/Laravel-10.0%2B-orange.svg)](https://laravel.com)
 
 ![Logo](https://github.com/rmunate/EasyDataTable/assets/91748598/83e476be-25d4-4681-bc0f-264f2ed9a2a4)
 
