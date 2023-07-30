@@ -128,7 +128,6 @@ class EasyDataTable extends EasyDataTableBase
         }
 
         if ($this->clientSide) {
-
             if (!empty($this->search)) {
                 throw DatatableException::create("The '->search()' method is intended to be used with DataTables ServerSide '->serverSide()'. It allows efficient server-side searching and is not available in clientside mode. Please switch to server-side mode to use this feature.");
             }
@@ -174,20 +173,14 @@ class EasyDataTable extends EasyDataTableBase
         $dir = $this->direction();
 
         if (empty($this->inputSearch())) {
-
             $rows = $this->query->offset($start)->limit($limit)->orderBy($order, $dir)->get();
             $totalFiltered = $this->query->count();
-
         } else {
-
             $search = $this->inputSearch();
 
             if (!empty($this->search)) {
-
                 $newRows = ($this->search)($this->query, $search);
-
             } else {
-
                 $columns = $this->query->columns;
                 $tableAndField = [];
 
@@ -202,7 +195,6 @@ class EasyDataTable extends EasyDataTableBase
                         $query->orWhere($field, 'LIKE', "%{$search}%");
                     }
                 });
-
             }
 
             $totalFiltered = $newRows->count();
@@ -216,10 +208,10 @@ class EasyDataTable extends EasyDataTableBase
         }
 
         return [
-            'draw' => $this->draw(),
-            'recordsTotal' => $this->query->count(),
+            'draw'            => $this->draw(),
+            'recordsTotal'    => $this->query->count(),
             'recordsFiltered' => $totalFiltered,
-            'data' => $data,
+            'data'            => $data,
         ];
     }
 }

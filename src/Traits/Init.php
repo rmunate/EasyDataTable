@@ -20,6 +20,7 @@ trait Init
     {
         $this->maxExecutionTime = $seconds;
         @PhpRunTime::set('max_execution_time', $seconds);
+
         return $this;
     }
 
@@ -34,6 +35,7 @@ trait Init
     {
         $this->memoryLimit = $limit;
         @PhpRunTime::set('memory_limit', $limit);
+
         return $this;
     }
 }
