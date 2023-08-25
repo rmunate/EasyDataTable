@@ -8,6 +8,7 @@
 ![Logo](https://github.com/rmunate/EasyDataTable/assets/91748598/83e476be-25d4-4681-bc0f-264f2ed9a2a4)
 
 [**----Documentación En Español----**](README_SPANISH.md)
+[**----Quick Manual / Manual Rapido ----**](README_FAST.md)
 
 ## Table of Contents
 - [Introduction](#introduction)
