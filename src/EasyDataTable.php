@@ -128,7 +128,6 @@ class EasyDataTable extends EasyDataTableBase
         }
 
         if ($this->clientSide) {
-
             if (!empty($this->request)) {
                 throw DatatableException::create("The '->request()' method is only necessary when using DataTables in ServerSide mode. In ClientSide mode, DataTables doesn't utilize this method, and it won't have any effect. If you're in ClientSide mode, you can safely remove any calls to '->request()'.");
             }

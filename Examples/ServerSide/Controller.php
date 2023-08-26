@@ -43,7 +43,6 @@ class NameController extends Controller
         $datatable->request($request);
         $datatable->query($query);
         $datatable->map(function ($row) use ($editar) {
-
             /**
              * ES: (Opcional) Si necesitas personalizar la forma en que se visualiza la información en la tabla, el método map() será de gran ayuda.
              * Además, si necesitas enviar datos adicionales o realizar validaciones, aquí puedes aplicar la lógica.
@@ -58,20 +57,19 @@ class NameController extends Controller
 
             return [
                 'identification' => $row->identification,
-                'employee' => strtolower($row->employee),
-                'novelty_type' => strtolower($row->novelty_type),
-                'description' => strtolower($row->description),
-                'calendar_days' => $row->calendar_days,
-                'business_days' => $row->business_days,
-                'initial_date' => date('d/m/Y', strtotime($row->initial_date)),
-                'final_date' => date('d/m/Y', strtotime($row->final_date)),
-                'action' => [
+                'employee'       => strtolower($row->employee),
+                'novelty_type'   => strtolower($row->novelty_type),
+                'description'    => strtolower($row->description),
+                'calendar_days'  => $row->calendar_days,
+                'business_days'  => $row->business_days,
+                'initial_date'   => date('d/m/Y', strtotime($row->initial_date)),
+                'final_date'     => date('d/m/Y', strtotime($row->final_date)),
+                'action'         => [
                     'editar' => $editar,
                 ],
             ];
         });
         $datatable->search(function ($query, $search) {
-
             /* ES:  Este método será de gran utilidad para definir qué filtros debe ejecutar el backend cuando se ingresen valores dentro del campo de búsqueda. La variable $search contendrá este valor. Recuerda utilizar la estructura tabla.campo en las condiciones y no los alias. */
             /* EN: This method will be very useful to define which filters the backend should execute when values are entered in the search field. The variable $search will contain this value. Remember to use the table.field structure in the conditions and not the aliases. */
             return $query->where(function ($query) use ($search) {
