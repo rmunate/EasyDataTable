@@ -6,7 +6,7 @@
 [![Laravel 9.0+](https://img.shields.io/badge/Laravel-9.0%2B-orange.svg)](https://laravel.com)
 [![Laravel 10.0+](https://img.shields.io/badge/Laravel-10.0%2B-orange.svg)](https://laravel.com)
 
-![Logo](https://github.com/rmunate/EasyDataTable/assets/91748598/83e476be-25d4-4681-bc0f-264f2ed9a2a4)
+![Logo](https://github.com/rmunate/EasyDataTable/assets/91748598/326fc805-ba79-478c-b686-3214d622a987)
 
 📖 [**DOCUMENTACIÓN EN ESPAÑOL**](README_SPANISH.md) 📖
 
@@ -393,6 +393,6 @@ This project is under the [MIT License](https://choosealicense.com/licenses/mit/
 
 🌟 Support My Projects! 🚀
 
-Make any contributions you see fit; the code is entirely yours. Together, we can do amazing things and improve the world of development. Your support is invaluable. 💖✨
+Make any contributions you see fit; the code is entirely yours. Together, we can do amazing things and improve the world of development. Your support is invaluable. ✨
 
 If you have ideas, suggestions, or just want to collaborate, we are open to everything! Join our community and be part of our journey to success! 🌐👩‍💻👨‍💻
