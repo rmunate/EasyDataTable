@@ -167,6 +167,7 @@ class EasyDataTable extends EasyDataTableBase
      */
     private function dataServerSide()
     {
+        $totalData = $this->query->count();
         $limit = $this->limit();
         $start = $this->start();
         $order = $this->order();
@@ -174,7 +175,7 @@ class EasyDataTable extends EasyDataTableBase
 
         if (empty($this->inputSearch())) {
             $rows = $this->query->offset($start)->limit($limit)->orderBy($order, $dir)->get();
-            $totalFiltered = $this->query->count();
+            $totalFiltered = $totalData;
         } else {
             $search = $this->inputSearch();
 
@@ -209,7 +210,7 @@ class EasyDataTable extends EasyDataTableBase
 
         return [
             'draw'            => $this->draw(),
-            'recordsTotal'    => $this->query->count(),
+            'recordsTotal'    => $totalData,
             'recordsFiltered' => $totalFiltered,
             'data'            => $data,
         ];
