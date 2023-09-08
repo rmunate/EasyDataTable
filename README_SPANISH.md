@@ -6,7 +6,7 @@
 [![Laravel 9.0+](https://img.shields.io/badge/Laravel-9.0%2B-orange.svg)](https://laravel.com)
 [![Laravel 10.0+](https://img.shields.io/badge/Laravel-10.0%2B-orange.svg)](https://laravel.com)
 
-![Logo](https://github.com/rmunate/EasyDataTable/assets/91748598/326fc805-ba79-478c-b686-3214d622a987)
+![Logo-easy-datatable](https://github.com/alejandrodiazpinilla/EasyDataTable/assets/51100789/403b944a-1991-4ebc-864c-762567848fc7)
 
 📖 [**DOCUMENTACIÓN EN INGLÉS**](README.md) 📖
 
