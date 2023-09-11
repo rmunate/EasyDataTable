@@ -32,7 +32,7 @@ trait Client
     public function order()
     {
         $column = ($this->request->has('order.0.column')) ? $this->request->input('order.0.column') : $this->request->input('order.column');
-        
+
         return $this->request->columns[$column]['data'];
     }
 
