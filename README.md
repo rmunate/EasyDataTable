@@ -249,7 +249,7 @@ class NameController extends Controller
     public function dataTable(Request $request)
     {
         /**
-         * Create a query using Query Builder; you can apply any conditions you need, just do NOT apply the final get() method.
+         * Create a query using Query Builder, you can apply all the conditions you require, just DO NOT apply the final get() method.
          */
         $query = DB::table('novedades')
             ->leftJoin('tipo_novedades', 'tipo_novedades.id', '=', 'novedades.tipo_novedad_id')
@@ -262,43 +262,55 @@ class NameController extends Controller
                 'novedades.dias_calendario AS calendar_days',
                 'novedades.dias_habiles AS business_days',
                 'novedades.fecha_inicial AS initial_date',
-                'novedades.fecha_final AS final_date'
+                'novedades.fecha_final AS final_date',
             );
 
         /**
          * (Optional) Sometimes, to determine if a user has permissions for some action on the table rows, you need to make queries like these.
          */
-        $permissionEdit = Auth::user()->can('novedades.editar');
+        $permissionEdit = Auth::user()->can('novedades.editar'); /* (Opcional) */
 
         /**
          * Using the library is as simple as using the following code.
          */
         $datatable = new EasyDataTable();
-        $datatable->serverSide(); /* Mandatory / Required */
+        $datatable->serverSide(); /* Obligatorio / Requerid */
+        $datatable->request($request);
         $datatable->query($query);
-        $datatable->map(function ($row) use ($permissionEdit) {
+        $datatable->map(function ($row) use ($editar) {
             /**
-             * (Optional) If you need to customize how the information is displayed in the table, the map() method will be of great help.
+             * (Optional) If you need to customize how the information is displayed in the table, the map() method will be very helpful.
              * Additionally, if you need to send additional data or perform validations, you can apply the logic here.
-             * It's important that the alias of each value in the query matches the value used in the array, as shown below.
+             * It's important that the alias of each value in the query is the same as the value used in the array, as shown below.
              */
+
             return [
                 'identification' => $row->identification,
-                'employee' => strtolower($row->employee),
-                'novelty_type' => strtolower($row->novelty_type),
-                'description' => strtolower($row->description),
-                'calendar_days' => $row->calendar_days,
-                'business_days' => $row->business_days,
-                'initial_date' => date('d/m/Y', strtotime($row->initial_date)),
-                'final_date' => date('d/m/Y', strtotime($row->final_date)),
-                'action' => [
-                    'editar' => $permissionEdit,
+                'employee'       => strtolower($row->employee),
+                'novelty_type'   => strtolower($row->novelty_type),
+                'description'    => strtolower($row->description),
+                'calendar_days'  => $row->calendar_days,
+                'business_days'  => $row->business_days,
+                'initial_date'   => date('d/m/Y', strtotime($row->initial_date)),
+                'final_date'     => date('d/m/Y', strtotime($row->final_date)),
+                'action'         => [
+                    'editar' => $editar,
                 ],
             ];
         });
+        $datatable->search(function ($query, $search) {
+            /* This method will be very useful to define which filters the backend should execute when values are entered in the search field. The variable $search will contain this value. Remember to use the table.field structure in the conditions and not the aliases. */
+            return $query->where(function ($query) use ($search) {
+                $query->where('novedades.id', 'like', "%{$search}%")
+                    ->orWhere('novedades.descripcion', 'like', "%{$search}%")
+                    ->orWhere('tipo_novedades.nombre', 'like', "%{$search}%")
+                    ->orWhere('empleados.nombre', 'like', "%{$search}%")
+                    ->orWhere('empleados.cedula', 'like', "%{$search}%");
+            });
+        });
 
         /**
-         * This method returns the constructed structure as required by the DataTable library in the FrontEnd.
+         * This method returns the constructed structure as required by the DataTable library on the Front.
          */
         return $datatable->response();
     }

@@ -31,7 +31,9 @@ trait Client
      */
     public function order()
     {
-        return $this->request->columns[$this->request->input('order.0.column')]['data'];
+        $column = ($this->request->has('order.0.column')) ? $this->request->input('order.0.column') : $this->request->input('order.column');
+        
+        return $this->request->columns[$column]['data'];
     }
 
     /**
@@ -41,7 +43,9 @@ trait Client
      */
     public function direction()
     {
-        return $this->request->input('order.0.dir');
+        $order = $this->request->has('order.0.dir') ? $this->request->input('order.0.dir') : $this->request->input('order.dir');
+
+        return $order;
     }
 
     /**
@@ -51,7 +55,9 @@ trait Client
      */
     public function inputSearch()
     {
-        return $this->request->input('search.value');
+        $search = $this->request->has('search.value') ? $this->request->input('search.value') : $this->request->input('search');
+
+        return $search;
     }
 
     /**

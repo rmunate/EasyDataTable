@@ -223,9 +223,7 @@ En el HTML deberás contar con una estructura similar a la siguiente. Asegúrate
 </table>
 ```
 
-### Configuración
-
- Del Lado Del Servidor
+### Configuración Del Lado Del Servidor
 Si deseas descargar el ejemplo, puedes encontrarlo [aquí](Examples/ServerSide).
 
 A continuación, se explica cómo configurar el backend para una tabla ServerSide:
@@ -264,39 +262,51 @@ class NameController extends Controller
                 'novedades.dias_calendario AS calendar_days',
                 'novedades.dias_habiles AS business_days',
                 'novedades.fecha_inicial AS initial_date',
-                'novedades.fecha_final AS final_date'
+                'novedades.fecha_final AS final_date',
             );
 
         /**
          * (Opcional) A veces, para determinar si un usuario tiene permisos sobre alguna acción en las filas de la tabla, debes realizar consultas como estas.
          */
-        $permissionEdit = Auth::user()->can('novedades.editar');
+        $permissionEdit = Auth::user()->can('novedades.editar'); /* (Opcional) */
 
         /**
          * El uso de la librería es tan simple como emplear el siguiente código.
          */
         $datatable = new EasyDataTable();
-        $datatable->serverSide(); /* Obligatorio / Requerido */
+        $datatable->serverSide(); /* Obligatorio / Requerid */
+        $datatable->request($request);
         $datatable->query($query);
-        $datatable->map(function ($row) use ($permissionEdit) {
+        $datatable->map(function ($row) use ($editar) {
             /**
              * (Opcional) Si necesitas personalizar la forma en que se visualiza la información en la tabla, el método map() será de gran ayuda.
              * Además, si necesitas enviar datos adicionales o realizar validaciones, aquí puedes aplicar la lógica.
              * Es importante que el alias de cada valor en la consulta sea el mismo valor que se utiliza en el array, como se muestra a continuación.
              */
+
             return [
                 'identification' => $row->identification,
-                'employee' => strtolower($row->employee),
-                'novelty_type' => strtolower($row->novelty_type),
-                'description' => strtolower($row->description),
-                'calendar_days' => $row->calendar_days,
-                'business_days' => $row->business_days,
-                'initial_date' => date('d/m/Y', strtotime($row->initial_date)),
-                'final_date' => date('d/m/Y', strtotime($row->final_date)),
-                'action' => [
-                    'editar' => $permissionEdit,
+                'employee'       => strtolower($row->employee),
+                'novelty_type'   => strtolower($row->novelty_type),
+                'description'    => strtolower($row->description),
+                'calendar_days'  => $row->calendar_days,
+                'business_days'  => $row->business_days,
+                'initial_date'   => date('d/m/Y', strtotime($row->initial_date)),
+                'final_date'     => date('d/m/Y', strtotime($row->final_date)),
+                'action'         => [
+                    'editar' => $editar,
                 ],
             ];
+        });
+        $datatable->search(function ($query, $search) {
+            /* Este método será de gran utilidad para definir qué filtros debe ejecutar el backend cuando se ingresen valores dentro del campo de búsqueda. La variable $search contendrá este valor. Recuerda utilizar la estructura tabla.campo en las condiciones y no los alias. */
+            return $query->where(function ($query) use ($search) {
+                $query->where('novedades.id', 'like', "%{$search}%")
+                    ->orWhere('novedades.descripcion', 'like', "%{$search}%")
+                    ->orWhere('tipo_novedades.nombre', 'like', "%{$search}%")
+                    ->orWhere('empleados.nombre', 'like', "%{$search}%")
+                    ->orWhere('empleados.cedula', 'like', "%{$search}%");
+            });
         });
 
         /**
