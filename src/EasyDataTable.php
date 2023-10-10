@@ -167,7 +167,7 @@ class EasyDataTable extends EasyDataTableBase
 
         $data = [];
         foreach ($rows as $r) {
-            $item = !empty($this->map) ? ($this->map)((object)$r) : $r;
+            $item = !empty($this->map) ? ($this->map)((object) $r) : $r;
             $data[] = $item;
         }
 
