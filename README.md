@@ -395,7 +395,42 @@ In the HTML, you should have a structure similar to the one below. Make sure tha
     </thead>
 </table>
 ```
+## With Data Preparated
+you can send data from a array or a collection to the front, for example:
+```php
+Array:1 [
+  0 => array:41 [
+    "estado" => "A"
+    "nombre" => "JOHN ALEJANDRO DIAZ PINILLA"
+    "fecha_nacimiento" => "1993-11-30 00:00:00.000"
+    "jornada" => "JORNADA 235 HORAS"
+  ]
+]
 
+Collection {
+    0 => array:41 [
+      "estado" => "A"
+      "nombre" => "JOHN ALEJANDRO DIAZ PINILLA"
+      "fecha_nacimiento" => "1993-11-30 00:00:00.000"
+      "jornada" => "JORNADA 235 HORAS"
+    ]
+}
+```
+For the send to the front, you must use the method fromData(), and put the array or the collection in the parameters.
+```php
+    $dataTable = new EasyDataTable();
+    /* Al metodo se debe enviar el arreglo o la coleccion de datos */
+    $dataTable->fromData($plantaActiva); /* Obligatorio / Requerido */
+    $dataTable->map(function ($row) {
+        return [
+            "estado" => $row->estado,
+            "nombre" => $row->nombre,
+            "fecha_nacimiento" => $row->fecha_nacimiento,
+            "jornada" => $row->jornada,
+        ];
+    });
+```
+this method work like the clientSide method, in this way the javascript is the same than the clientSide.
 ## Creator
 - 🇨🇴 Raúl Mauricio Uñate Castro
 - Email: raulmauriciounate@gmail.com
