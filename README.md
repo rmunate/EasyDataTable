@@ -396,13 +396,13 @@ In the HTML, you should have a structure similar to the one below. Make sure tha
 </table>
 ```
 ## With Data Preparated
-you can send data from a array or a collection to the front, for example:
+You can send data from a array or a collection to the front, for example:
 ```php
 Array:1 [
   0 => array:41 [
     "status" => "A"
     "name" => "JOHN ALEJANDRO DIAZ PINILLA"
-    "born_day" => "1993-11-30 00:00:00.000"
+    "born_day" => "1993-11-30"
     "scheduler" => "Sheduler 235 Hour"
   ]
 ]
@@ -410,8 +410,8 @@ Array:1 [
 Collection {
     0 => array:41 [
       "status" => "A"
-      "name" => "JOHN ALEJANDRO DIAZ PINILLA"
-      "born_day" => "1993-11-30 00:00:00.000"
+      "name" => "CARLOS GIOVANNY RODRIGUEZ TRIVIÑO"
+      "born_day" => "1992-10-19"
       "scheduler" => "Scheduler 235 Hour"
     ]
 }
