@@ -400,33 +400,33 @@ you can send data from a array or a collection to the front, for example:
 ```php
 Array:1 [
   0 => array:41 [
-    "estado" => "A"
-    "nombre" => "JOHN ALEJANDRO DIAZ PINILLA"
-    "fecha_nacimiento" => "1993-11-30 00:00:00.000"
-    "jornada" => "JORNADA 235 HORAS"
+    "status" => "A"
+    "name" => "JOHN ALEJANDRO DIAZ PINILLA"
+    "born_day" => "1993-11-30 00:00:00.000"
+    "scheduler" => "Sheduler 235 Hour"
   ]
 ]
 
 Collection {
     0 => array:41 [
-      "estado" => "A"
-      "nombre" => "JOHN ALEJANDRO DIAZ PINILLA"
-      "fecha_nacimiento" => "1993-11-30 00:00:00.000"
-      "jornada" => "JORNADA 235 HORAS"
+      "status" => "A"
+      "name" => "JOHN ALEJANDRO DIAZ PINILLA"
+      "born_day" => "1993-11-30 00:00:00.000"
+      "scheduler" => "Scheduler 235 Hour"
     ]
 }
 ```
 For the send to the front, you must use the method fromData(), and put the array or the collection in the parameters.
 ```php
     $dataTable = new EasyDataTable();
-    /* Al metodo se debe enviar el arreglo o la coleccion de datos */
-    $dataTable->fromData($plantaActiva); /* Obligatorio / Requerido */
+    /* The array or collection of data must be sent to the method. */
+    $dataTable->fromData($plantaActiva); /* Mandatory / Required */
     $dataTable->map(function ($row) {
         return [
-            "estado" => $row->estado,
-            "nombre" => $row->nombre,
-            "fecha_nacimiento" => $row->fecha_nacimiento,
-            "jornada" => $row->jornada,
+            "status" => $row->status,
+            "name" => $row->name,
+            "born_day" => $row->born_day,
+            "scheduler" => $row->scheduler,
         ];
     });
 ```
