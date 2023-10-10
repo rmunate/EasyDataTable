@@ -402,7 +402,7 @@ Array:1 [
   0 => array:41 [
     "estado" => "A"
     "nombre" => "JOHN ALEJANDRO DIAZ PINILLA"
-    "fecha_nacimiento" => "1993-11-30 00:00:00.000"
+    "fecha_nacimiento" => "1993-11-30"
     "jornada" => "JORNADA 235 HORAS"
   ]
 ]
@@ -410,8 +410,8 @@ Array:1 [
 Collection {
     0 => array:41 [
       "estado" => "A"
-      "nombre" => "JOHN ALEJANDRO DIAZ PINILLA"
-      "fecha_nacimiento" => "1993-11-30 00:00:00.000"
+      "nombre" => "CARLOS GIOVANNY RODRIGUEZ TRIVIÑO"
+      "fecha_nacimiento" => "1992-10-19"
       "jornada" => "JORNADA 235 HORAS"
     ]
 }
