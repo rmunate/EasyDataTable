@@ -395,7 +395,42 @@ En el HTML deberás contar con una estructura similar a la siguiente. Asegúrate
     </thead>
 </table>
 ```
+## Data Preparada
+Puedes enviar la data ya preparada como un arreglo o como una colección de datos, como los ejemplos a continuación:
+```php
+Array:1 [
+  0 => array:41 [
+    "estado" => "A"
+    "nombre" => "JOHN ALEJANDRO DIAZ PINILLA"
+    "fecha_nacimiento" => "1993-11-30"
+    "jornada" => "JORNADA 235 HORAS"
+  ]
+]
 
+Collection {
+    0 => array:41 [
+      "estado" => "A"
+      "nombre" => "CARLOS GIOVANNY RODRIGUEZ TRIVIÑO"
+      "fecha_nacimiento" => "1992-10-19"
+      "jornada" => "JORNADA 235 HORAS"
+    ]
+}
+```
+Para el envió al front podrás utilizarlo de la siguiente manera en el controlador:
+```php
+    $dataTable = new EasyDataTable();
+    /* Al metodo se debe enviar el arreglo o la coleccion de datos */
+    $dataTable->fromData($plantaActiva); /* Obligatorio / Requerido */
+    $dataTable->map(function ($row) {
+        return [
+            "estado" => $row->estado,
+            "nombre" => $row->nombre,
+            "fecha_nacimiento" => $row->fecha_nacimiento,
+            "jornada" => $row->jornada,
+        ];
+    });
+```
+Este método funcionar como un clientSide, por este motivo la forma de implementarlo en el javascript será la misma.
 ## Creador
 - 🇨🇴 Raúl Mauricio Uñate Castro
 - Correo electrónico: raulmauriciounate@gmail.com

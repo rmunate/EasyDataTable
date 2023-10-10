@@ -22,6 +22,7 @@ class EasyDataTable extends EasyDataTableBase
     private $search;
     private $serverSide;
     private $clientSide;
+    private $data;
 
     /**
      * Create a new EasyDataTable instance.
@@ -89,6 +90,21 @@ class EasyDataTable extends EasyDataTableBase
     }
 
     /**
+     * Set the array or a collection for the EasyDataTable.
+     *
+     * @param iterable $data
+     *
+     * @return $this
+     */
+    public function fromData(iterable $data)
+    {
+        $this->clientSide();
+        $this->data = $data;
+
+        return $this;
+    }
+
+    /**
      * Set the map closure for the EasyDataTable.
      *
      * @param \Closure $map
@@ -147,11 +163,11 @@ class EasyDataTable extends EasyDataTableBase
      */
     private function dataClientSide()
     {
-        $rows = $this->query->get();
+        $rows = is_iterable($this->data) ? $this->data : $this->query->get();
 
         $data = [];
         foreach ($rows as $r) {
-            $item = !empty($this->map) ? ($this->map)($r) : $r;
+            $item = !empty($this->map) ? ($this->map)((object) $r) : $r;
             $data[] = $item;
         }
 
