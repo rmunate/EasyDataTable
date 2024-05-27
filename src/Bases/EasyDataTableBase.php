@@ -3,24 +3,28 @@
 namespace Rmunate\EasyDatatable\Bases;
 
 use BadMethodCallException;
-use Closure;
-use Illuminate\Database\Query\Builder;
-use Illuminate\Http\Request;
 
+/**
+ * Base class for EasyDataTable. Provides foundational functionality for
+ * handling datatables in a generic and reusable way.
+ */
 abstract class EasyDataTableBase
 {
     /**
-     * Handle calls to missing methods on the helper.
+     * Handle calls to undefined methods on the instance.
      *
-     * @param string $method
-     * @param array  $parameters
+     * This magic method is triggered when invoking inaccessible methods in an object context.
      *
-     * @throws \BadMethodCallException
+     * @param string $method The name of the method being called.
+     * @param array $parameters An enumerated array containing the parameters passed to the method.
+     *
+     * @throws \BadMethodCallException If the method does not exist.
      *
      * @return mixed
      */
     public function __call($method, $parameters)
     {
+        // Throw an exception indicating the called method does not exist
         throw new BadMethodCallException(sprintf(
             'Method %s::%s does not exist.',
             static::class,
@@ -29,61 +33,16 @@ abstract class EasyDataTableBase
     }
 
     /**
-     * Initialize a datatable of any type.
+     * Initialize a datatable instance.
      *
-     * @return static
+     * This static method allows for initializing a new instance of the derived class.
+     * This can be useful for fluent interfaces and method chaining.
+     *
+     * @return static A new instance of the called class.
      */
     public static function init()
     {
+        // Return a new instance of the called class
         return new static();
     }
-
-    /**
-     * Determine if the datatable is server-side.
-     *
-     * @return mixed
-     */
-    abstract public function serverSide();
-
-    /**
-     * Determine if the datatable is not server-side.
-     *
-     * @return mixed
-     */
-    abstract public function clientSide();
-
-    /**
-     * Get the request instance for the datatable.
-     *
-     * @return mixed
-     */
-    abstract public function request(Request $request);
-
-    /**
-     * Get the query instance for the datatable.
-     *
-     * @return mixed
-     */
-    abstract public function query(Builder $query);
-
-    /**
-     * Get the map closure for the datatable.
-     *
-     * @return mixed
-     */
-    abstract public function map(Closure $map);
-
-    /**
-     * Get the search closure for the datatable.
-     *
-     * @return mixed
-     */
-    abstract public function search(Closure $search);
-
-    /**
-     * Generate the response for the datatable.
-     *
-     * @return mixed
-     */
-    abstract public function response();
 }

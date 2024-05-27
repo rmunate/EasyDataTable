@@ -2,36 +2,63 @@
 
 namespace Rmunate\EasyDatatable\Traits;
 
+use Rmunate\EasyDatatable\Exceptions\DatatableException;
+
+/**
+ * Trait Client
+ *
+ * Provides helper methods for interacting with DataTables requests.
+ */
 trait Client
 {
     /**
      * Get the limit value sent by the DataTable.
      *
      * @return int|null
+     *
+     * @throws \Rmunate\EasyDatatable\Exceptions\DatatableException If 'length' is not found in the request.
      */
     public function limit()
     {
-        return $this->request->input('length');
+        if ($this->request->has('length')) {
+            return $this->request->input('length');
+        }
+
+        throw DatatableException::create("Property 'length' not found in the request.");
     }
 
     /**
      * Get the start value for the database query based on DataTable input.
      *
      * @return int|null
+     *
+     * @throws \Rmunate\EasyDatatable\Exceptions\DatatableException If 'start' is not found in the request.
      */
     public function start()
     {
-        return $this->request->input('start');
+        if ($this->request->has('start')) {
+            return $this->request->input('start');
+        }
+
+        throw DatatableException::create("Property 'start' not found in the request.");
     }
 
     /**
      * Get the requested ordering column from the DataTable.
      *
      * @return string|null
+     *
+     * @throws \Rmunate\EasyDatatable\Exceptions\DatatableException If 'order.0.column' or 'order.column' is not found in the request.
      */
     public function order()
     {
-        $column = ($this->request->has('order.0.column')) ? $this->request->input('order.0.column') : $this->request->input('order.column');
+        if ($this->request->has('order.0.column')) {
+            $column = $this->request->input('order.0.column');
+        } elseif ($this->request->has('order.column')) {
+            $column = $this->request->input('order.column');
+        } else {
+            throw DatatableException::create("Property 'order.0.column' or 'order.column' not found in the request.");
+        }
 
         return $this->request->columns[$column]['data'];
     }
@@ -40,33 +67,51 @@ trait Client
      * Get the ordering direction from the DataTable.
      *
      * @return string|null
+     *
+     * @throws \Rmunate\EasyDatatable\Exceptions\DatatableException If 'order.0.dir' or 'order.dir' is not found in the request.
      */
     public function direction()
     {
-        $order = $this->request->has('order.0.dir') ? $this->request->input('order.0.dir') : $this->request->input('order.dir');
+        if ($this->request->has('order.0.dir')) {
+            return $this->request->input('order.0.dir');
+        } elseif ($this->request->has('order.dir')) {
+            return $this->request->input('order.dir');
+        }
 
-        return $order;
+        throw DatatableException::create("Property 'order.0.dir' or 'order.dir' not found in the request.");
     }
 
     /**
      * Get the search value from the DataTable input.
      *
      * @return string|null
+     *
+     * @throws \Rmunate\EasyDatatable\Exceptions\DatatableException If 'search.value' or 'search' is not found in the request.
      */
     public function inputSearch()
     {
-        $search = $this->request->has('search.value') ? $this->request->input('search.value') : $this->request->input('search');
+        if ($this->request->has('search.value')) {
+            return $this->request->input('search.value');
+        } elseif ($this->request->has('search')) {
+            return $this->request->input('search');
+        }
 
-        return $search;
+        throw DatatableException::create("Property 'search' not found in the request.");
     }
 
     /**
      * Get the "draw" value sent by the DataTable.
      *
      * @return int|null
+     *
+     * @throws \Rmunate\EasyDatatable\Exceptions\DatatableException If 'draw' is not found in the request.
      */
     public function draw()
     {
-        return intval($this->request->input('draw'));
+        if ($this->request->has('draw')) {
+            return intval($this->request->input('draw'));
+        }
+
+        throw DatatableException::create("Property 'draw' not found in the request.");
     }
 }

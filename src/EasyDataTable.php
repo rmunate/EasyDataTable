@@ -3,14 +3,15 @@
 namespace Rmunate\EasyDatatable;
 
 use Closure;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
-use Rmunate\EasyDatatable\Bases\EasyDataTableBase;
-use Rmunate\EasyDatatable\Exceptions\DatatableException;
-use Rmunate\EasyDatatable\Traits\Client;
+use Illuminate\Database\Query\Builder;
 use Rmunate\EasyDatatable\Traits\Init;
+use Rmunate\EasyDatatable\Traits\Client;
+use Rmunate\EasyDatatable\Bases\EasyDataTableBase;
+use Rmunate\EasyDatatable\Contracts\IEasyDataTable;
+use Rmunate\EasyDatatable\Exceptions\DatatableException;
 
-class EasyDataTable extends EasyDataTableBase
+class EasyDataTable extends EasyDataTableBase implements IEasyDataTable
 {
     use Init;
     use Client;
@@ -144,12 +145,13 @@ class EasyDataTable extends EasyDataTableBase
         }
 
         if ($this->clientSide) {
+
             if (!empty($this->request)) {
-                throw DatatableException::create("The '->request()' method is only necessary when using DataTables in ServerSide mode. In ClientSide mode, DataTables doesn't utilize this method, and it won't have any effect. If you're in ClientSide mode, you can safely remove any calls to '->request()'.");
+                throw DatatableException::create("The '->request()' method is only for ServerSide mode.");
             }
 
             if (!empty($this->search)) {
-                throw DatatableException::create("The '->search()' method is intended to be used with DataTables ServerSide '->serverSide()'. It allows efficient server-side searching and is not available in clientside mode. Please switch to server-side mode to use this feature.");
+                throw DatatableException::create("The '->search()' method is only for ServerSide mode.");
             }
 
             return $this->dataClientSide();

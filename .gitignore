@@ -7,7 +7,6 @@
 /.idea
 /.vscode
 
-
 # Ignore Composer generated directory and files
 /vendor
 
@@ -16,3 +15,9 @@
 .idea
 .vscode
 composer.lock
+
+# Node
+node_modules
+docs/.vitepress/cache
+docs/.vitepress/dist
+docs/.vitepress/.temp
