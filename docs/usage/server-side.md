@@ -16,7 +16,7 @@ The primary feature of a ServerSide DataTable is that most data-related operatio
 
 **Security:** By performing most operations on the server, greater security and authorization control can be implemented to ensure that users only access data they are authorized to view.
 
-If you want to download the example, you can find it [here](https://github.com/rmunate/EasyDataTable/tree/main/examples/ServerSide).
+If you want to download the example, you can find it [here](https://github.com/rmunate/EasyDataTable/tree/master/examples/ServerSide).
 
 Here's how to set up the backend for a ServerSide table:
 

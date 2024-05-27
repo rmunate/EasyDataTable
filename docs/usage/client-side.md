@@ -8,7 +8,7 @@ outline: deep
 
 The main feature of a ClientSide DataTable is that all data and data manipulation logic are handled on the client side, i.e., in the user's web browser, rather than making requests to the web server for each interaction. This means that all the data needed to populate the table is initially loaded in the user's browser, and operations such as search, filtering, sorting, and pagination are performed without the need to communicate with the server.
 
-If you want to download the example, you can find it [here](https://github.com/rmunate/EasyDataTable/tree/main/examples/ClientSide).
+If you want to download the example, you can find it [here](https://github.com/rmunate/EasyDataTable/tree/master/examples/ClientSide).
 
 Let's see how to set up the backend for a ClientSide table. Remember that in these cases, all the information must be delivered to the Frontend, which is not recommended for very large data sizes.
 
