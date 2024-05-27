@@ -2,10 +2,8 @@
 
 namespace Rmunate\EasyDatatable\Traits;
 
-use Rmunate\PhpConfigRuntime\PhpRunTime;
-
 /**
- * Trait Init
+ * Trait Init.
  *
  * Provides methods to configure the PHP runtime environment,
  * such as setting the maximum execution time and memory limit.

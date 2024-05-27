@@ -26,6 +26,7 @@ interface IEasyDataTable
      * Get the request instance for the datatable.
      *
      * @param Request $request
+     *
      * @return mixed
      */
     public function request(Request $request);
@@ -34,6 +35,7 @@ interface IEasyDataTable
      * Get the query instance for the datatable.
      *
      * @param Builder $query
+     *
      * @return mixed
      */
     public function query(Builder $query);
@@ -42,6 +44,7 @@ interface IEasyDataTable
      * Get the map closure for the datatable.
      *
      * @param Closure $map
+     *
      * @return mixed
      */
     public function map(Closure $map);
@@ -50,6 +53,7 @@ interface IEasyDataTable
      * Get the search closure for the datatable.
      *
      * @param Closure $search
+     *
      * @return mixed
      */
     public function search(Closure $search);
