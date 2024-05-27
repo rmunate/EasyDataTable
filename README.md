@@ -1,6 +1,8 @@
 # EasyDataTable:
 **A Fast and Efficient Way to Create BackEnd for Any DataTable in the Laravel PHP Framework**
 
+![LOGO](https://github.com/rmunate/EasyDataTable/assets/91748598/f05bac16-8619-4181-a994-10837c00b5d4)
+
 Are you tired of the hassle of handling DataTables in your Laravel projects? Say goodbye to the complexity! EasyDataTable is here to streamline your backend processes.
 
 With EasyDataTable, you can harness the power of Laravel's Query Builder to swiftly and effortlessly create tables with all the features you need, as demanded by [DataTables](https://datatables.net/).
