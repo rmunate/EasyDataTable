@@ -5,7 +5,7 @@ namespace Rmunate\EasyDatatable\Traits;
 use Rmunate\EasyDatatable\Exceptions\DatatableException;
 
 /**
- * Trait Client
+ * Trait Client.
  *
  * Provides helper methods for interacting with DataTables requests.
  */
@@ -14,9 +14,9 @@ trait Client
     /**
      * Get the limit value sent by the DataTable.
      *
-     * @return int|null
-     *
      * @throws \Rmunate\EasyDatatable\Exceptions\DatatableException If 'length' is not found in the request.
+     *
+     * @return int|null
      */
     public function limit()
     {
@@ -30,9 +30,9 @@ trait Client
     /**
      * Get the start value for the database query based on DataTable input.
      *
-     * @return int|null
-     *
      * @throws \Rmunate\EasyDatatable\Exceptions\DatatableException If 'start' is not found in the request.
+     *
+     * @return int|null
      */
     public function start()
     {
@@ -46,9 +46,9 @@ trait Client
     /**
      * Get the requested ordering column from the DataTable.
      *
-     * @return string|null
-     *
      * @throws \Rmunate\EasyDatatable\Exceptions\DatatableException If 'order.0.column' or 'order.column' is not found in the request.
+     *
+     * @return string|null
      */
     public function order()
     {
@@ -66,9 +66,9 @@ trait Client
     /**
      * Get the ordering direction from the DataTable.
      *
-     * @return string|null
-     *
      * @throws \Rmunate\EasyDatatable\Exceptions\DatatableException If 'order.0.dir' or 'order.dir' is not found in the request.
+     *
+     * @return string|null
      */
     public function direction()
     {
@@ -84,9 +84,9 @@ trait Client
     /**
      * Get the search value from the DataTable input.
      *
-     * @return string|null
-     *
      * @throws \Rmunate\EasyDatatable\Exceptions\DatatableException If 'search.value' or 'search' is not found in the request.
+     *
+     * @return string|null
      */
     public function inputSearch()
     {
@@ -102,9 +102,9 @@ trait Client
     /**
      * Get the "draw" value sent by the DataTable.
      *
-     * @return int|null
-     *
      * @throws \Rmunate\EasyDatatable\Exceptions\DatatableException If 'draw' is not found in the request.
+     *
+     * @return int|null
      */
     public function draw()
     {

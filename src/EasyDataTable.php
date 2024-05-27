@@ -3,13 +3,13 @@
 namespace Rmunate\EasyDatatable;
 
 use Closure;
-use Illuminate\Http\Request;
 use Illuminate\Database\Query\Builder;
-use Rmunate\EasyDatatable\Traits\Init;
-use Rmunate\EasyDatatable\Traits\Client;
+use Illuminate\Http\Request;
 use Rmunate\EasyDatatable\Bases\EasyDataTableBase;
 use Rmunate\EasyDatatable\Contracts\IEasyDataTable;
 use Rmunate\EasyDatatable\Exceptions\DatatableException;
+use Rmunate\EasyDatatable\Traits\Client;
+use Rmunate\EasyDatatable\Traits\Init;
 
 class EasyDataTable extends EasyDataTableBase implements IEasyDataTable
 {
@@ -145,7 +145,6 @@ class EasyDataTable extends EasyDataTableBase implements IEasyDataTable
         }
 
         if ($this->clientSide) {
-
             if (!empty($this->request)) {
                 throw DatatableException::create("The '->request()' method is only for ServerSide mode.");
             }

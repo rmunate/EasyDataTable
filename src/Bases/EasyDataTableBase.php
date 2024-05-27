@@ -15,8 +15,8 @@ abstract class EasyDataTableBase
      *
      * This magic method is triggered when invoking inaccessible methods in an object context.
      *
-     * @param string $method The name of the method being called.
-     * @param array $parameters An enumerated array containing the parameters passed to the method.
+     * @param string $method     The name of the method being called.
+     * @param array  $parameters An enumerated array containing the parameters passed to the method.
      *
      * @throws \BadMethodCallException If the method does not exist.
      *
