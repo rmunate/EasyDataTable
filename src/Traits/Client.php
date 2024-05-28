@@ -57,7 +57,8 @@ trait Client
         } elseif ($this->request->has('order.column')) {
             $column = $this->request->input('order.column');
         } else {
-            throw DatatableException::create("Property 'order.0.column' or 'order.column' not found in the request.");
+            // throw DatatableException::create("Property 'order.0.column' or 'order.column' not found in the request.");
+            $column = 0;
         }
 
         return $this->request->columns[$column]['data'];
@@ -78,7 +79,8 @@ trait Client
             return $this->request->input('order.dir');
         }
 
-        throw DatatableException::create("Property 'order.0.dir' or 'order.dir' not found in the request.");
+        return "asc";
+        // throw DatatableException::create("Property 'order.0.dir' or 'order.dir' not found in the request.");
     }
 
     /**
