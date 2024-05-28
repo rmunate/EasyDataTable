@@ -79,7 +79,7 @@ trait Client
             return $this->request->input('order.dir');
         }
 
-        return "asc";
+        return 'asc';
         // throw DatatableException::create("Property 'order.0.dir' or 'order.dir' not found in the request.");
     }
 
