@@ -48,11 +48,11 @@ trait Init
      * This method sets the `memory_limit` directive in PHP to the specified
      * value, allowing scripts to use more memory if necessary.
      *
-     * @param string $limit Memory limit. Default is '256M'.
+     * @param string $limit Memory limit. Default is '512M'.
      *
      * @return $this
      */
-    public function memoryLimit(string $limit = '256M')
+    public function memoryLimit(string $limit = '512M')
     {
         // Store the memory limit in the instance variable
         $this->memoryLimit = $limit;

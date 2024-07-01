@@ -17,7 +17,7 @@ export default defineConfig({
         logo: '/img/logo.png',
         nav: [
             {
-                text: 'Docs ^2.0',
+                text: 'Docs ^2.1',
                 link: '/',
             }
         ],
