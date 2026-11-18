@@ -3,6 +3,7 @@
   "private": true,
   "version": "3.0.0",
   "devDependencies": {
+    "@fontsource/titillium-web": "^5.3.0",
     "vitepress": "^1.6.4"
   },
   "scripts": {

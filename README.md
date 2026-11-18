@@ -12,9 +12,11 @@ With EasyDataTable, you can harness the power of Laravel's Query Builder to swif
 
 ### Learn by example
 
+- **Install and verify:** follow the [Laravel setup guide](docs/getting-started/installation.md).
 - **Start small:** [prepared data](docs/other-features/data-preparated.md) and a [client-side catalog](docs/usage/client-side.md).
 - **Scale up:** [SQL-backed search and pagination](docs/usage/server-side.md) and a [company-scoped leave dashboard](docs/usage/employee-leave.md) with joins, status and date filters, and authorized actions.
 - **Integrate:** [Metronic](docs/usage/metronic.md), or copy the [Laravel examples and SQLite fixture](examples/README.md).
+- **Look up or debug:** use the [PHP API and JSON contract](docs/reference/api.md) and the [troubleshooting guide](docs/reference/troubleshooting.md).
 
 Try the [interactive preview](https://rmunate.github.io/EasyDataTable/examples/#try-the-dashboard) to see how filters change the server-side counts.
 

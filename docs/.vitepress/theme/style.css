@@ -1,0 +1,185 @@
+:root {
+    --vp-font-family-base: 'Titillium Web', system-ui, sans-serif;
+
+    --vp-c-bg: #fdfdff;
+    --vp-c-bg-alt: #f2f5fc;
+    --vp-c-bg-soft: #eef3fb;
+    --vp-c-border: #b6c4df;
+    --vp-c-divider: #d7e0ef;
+    --vp-c-gutter: #d7e0ef;
+    --vp-c-text-1: #15213a;
+    --vp-c-text-2: #3e506d;
+    --vp-c-text-3: #53637e;
+    --vp-c-brand-1: #00647c;
+    --vp-c-brand-2: #00728c;
+    --vp-c-brand-3: #095b75;
+    --vp-c-brand-soft: #dff6fb;
+
+    --vp-c-tip-1: #00647c;
+    --vp-c-tip-soft: #e4f7fc;
+    --vp-c-warning-1: #82440d;
+    --vp-c-warning-soft: #fff1d9;
+    --vp-c-important-1: #5436b6;
+    --vp-c-important-soft: #eee8ff;
+    --vp-c-note-1: #5436b6;
+    --vp-c-note-soft: #eee8ff;
+
+    --edt-violet: #5436b6;
+    --edt-violet-soft: #eee8ff;
+    --edt-orange: #82440d;
+    --edt-orange-soft: #fff1d9;
+    --edt-surface: #fff;
+    --edt-shadow: 0 12px 32px rgb(22 46 90 / 8%);
+    --edt-focus: #6941cb;
+}
+
+.dark {
+    --vp-c-bg: #101725;
+    --vp-c-bg-alt: #0c1220;
+    --vp-c-bg-soft: #171f33;
+    --vp-c-border: #485a79;
+    --vp-c-divider: #2b3a56;
+    --vp-c-gutter: #2b3a56;
+    --vp-c-text-1: #eef5ff;
+    --vp-c-text-2: #bccbe1;
+    --vp-c-text-3: #a4b4cd;
+    --vp-c-brand-1: #6de8f7;
+    --vp-c-brand-2: #16657d;
+    --vp-c-brand-3: #0a566f;
+    --vp-c-brand-soft: #19394b;
+
+    --vp-c-tip-1: #6de8f7;
+    --vp-c-tip-soft: #133242;
+    --vp-c-warning-1: #ffcd8b;
+    --vp-c-warning-soft: #3c2b26;
+    --vp-c-important-1: #d4c3ff;
+    --vp-c-important-soft: #2d2549;
+    --vp-c-note-1: #d4c3ff;
+    --vp-c-note-soft: #2d2549;
+
+    --edt-violet: #d4c3ff;
+    --edt-violet-soft: #2d2549;
+    --edt-orange: #ffcd8b;
+    --edt-orange-soft: #3c2b26;
+    --edt-surface: #151d30;
+    --edt-shadow: 0 12px 32px rgb(0 0 0 / 18%);
+    --edt-focus: #bca3ff;
+}
+
+body {
+    font-size: 17px;
+}
+
+:is(a, button, input, select, [tabindex]):focus-visible {
+    outline: 2px solid var(--edt-focus);
+    outline-offset: 3px;
+}
+
+.VPNavBarTitle .title {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.VPNavBarTitle .VPImage {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.VPSidebar {
+    border-right: 1px solid var(--vp-c-divider);
+}
+
+.VPSidebarItem.level-0 > .item > .text {
+    text-transform: uppercase;
+    letter-spacing: .085em;
+    font-size: .73rem;
+}
+
+.VPSidebarItem.is-active > .item > .link {
+    border-radius: 7px;
+    background: var(--vp-c-brand-soft);
+}
+
+.VPSidebarItem.level-1 > .item > .link {
+    padding-inline: .5rem;
+}
+
+.VPDoc .vp-doc h1 {
+    font-size: clamp(2.2rem, 3.8vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -.025em;
+    overflow-wrap: anywhere;
+}
+
+.VPDoc .vp-doc h1::after {
+    content: '';
+    display: block;
+    width: 3.75rem;
+    height: 4px;
+    margin-top: 1rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #1baecb, #8858eb);
+}
+
+.VPDoc .vp-doc h1 + p {
+    font-size: 1.16rem;
+    line-height: 1.6;
+    color: var(--vp-c-text-2);
+}
+
+.VPDoc .vp-doc h2 {
+    margin-top: 2.6rem;
+    padding-top: 1.35rem;
+    font-size: 1.68rem;
+    line-height: 1.2;
+}
+
+.VPDoc .vp-doc h3 {
+    font-size: 1.25rem;
+}
+
+.vp-doc th {
+    background: var(--vp-c-brand-soft);
+    color: var(--vp-c-text-1);
+}
+
+.vp-doc .custom-block {
+    border-radius: 12px;
+    border-inline-start: 3px solid var(--vp-c-border);
+}
+
+.vp-doc .custom-block.tip { border-inline-start-color: var(--vp-c-tip-1); }
+.vp-doc .custom-block.note { border-inline-start-color: var(--vp-c-note-1); }
+.vp-doc .custom-block.important { border-inline-start-color: var(--vp-c-important-1); }
+.vp-doc .custom-block.warning { border-inline-start-color: var(--vp-c-warning-1); }
+.vp-doc .custom-block.danger { border-inline-start-color: var(--vp-c-danger-1); }
+
+.vp-doc div[class*='language-'] {
+    border: 1px solid var(--vp-c-divider);
+    border-radius: 10px;
+}
+
+.vp-doc .vp-code-group div[class*='language-'] {
+    border-radius: 0 0 10px 10px;
+}
+
+.VPDocFooter .pager-link {
+    background: var(--edt-surface);
+    box-shadow: var(--edt-shadow);
+}
+
+.edt-home .VPHome {
+    margin-bottom: 0;
+}
+
+@media (max-width: 639px) {
+    .VPDoc .vp-doc h1 {
+        font-size: clamp(1.95rem, 8vw, 2.7rem);
+    }
+
+    .vp-doc div[class*='language-'] {
+        border-radius: 0;
+        border-inline: 0;
+    }
+}

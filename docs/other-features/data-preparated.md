@@ -1,14 +1,22 @@
+---
+description: Build a database-free Laravel table end to end, with copyable routes, a complete Blade view and expected JSON.
+---
+
 # First table: prepared data <Badge type="tip" text="01 · Beginner" />
 
-Start with three products and a single GET endpoint. `fromData()` accepts an array, a collection or another iterable of **rows** and selects client-side mode for you. No database or request parsing is needed.
+Build a working Ajax catalog with three PHP rows and no database. You will create one route for the page and a second route for the JSON it loads. Start with a [running Laravel app and EasyDataTable installed](../getting-started/installation.md).
 
-## 1. Add the route
+## 1. Add the routes
 
-Copy this into `routes/web.php`:
+In your Laravel app, open `routes/web.php`. Keep the imports at the top, under the existing `<?php`, and don't repeat `use Illuminate\Support\Facades\Route;` if it is already there. Add both route definitions:
 
-<<< @/../examples/routes.php#catalog{4,7-11}
+<<< @/../examples/routes.php#catalog{php}
 
-Go to `/examples/catalog/data` to check the response:
+`Route::view()` serves `examples.catalog`, which Laravel resolves to `resources/views/examples/catalog.blade.php`. The second route calls `fromData()` and returns a PHP array; Laravel serializes it as JSON. It needs no DataTables request parameters.
+
+## 2. Verify the JSON endpoint
+
+Open <http://127.0.0.1:8000/examples/catalog/data>. The response should be HTTP **200** with the following fields and values:
 
 ```json
 {
@@ -20,37 +28,45 @@ Go to `/examples/catalog/data` to check the response:
 }
 ```
 
-## 2. Render it in the browser
+If you see HTML or a 404, run `php artisan route:list --path=examples/catalog` in the Laravel app and confirm both GET routes are listed.
 
-Place this view at `resources/views/examples/catalog.blade.php`, then open `/examples/catalog`. Search for `USB`, then sort by **In stock**. The browser does both without requesting another page.
+## 3. Render the table in Blade
 
-::: details Complete Blade view (HTML, CDN assets and JavaScript)
+Create the `resources/views/examples` directory if necessary. Save this complete view as `resources/views/examples/catalog.blade.php`:
+
 <<< @/../examples/ClientSide/catalog.blade.php{html}
-:::
+
+- The `data-source` attribute resolves the URL from the named route `examples.catalog.data`; keep that name in sync with the route definition.
+- `ajax` tells DataTables to read the top-level `data` list by default. Each `columns[].data` key must match a field in each JSON row: `name` and `stock`.
+- jQuery loads before DataTables, and the initializer runs after the markup and scripts. `DataTable.render.text()` displays the product name as text.
+
+Open <http://127.0.0.1:8000/examples/catalog>. You should see three products. Search for `USB` to see only **USB-C adapter**, clear the search, then click **In stock** to sort. In the browser's **Network** tab you should see the initial `/examples/catalog/data` request, but no new requests when you search or sort.
 
 ::: tip Use a list, even for one row
-Use `fromData([['name' => 'Desk lamp', 'stock' => 12]])`, not `fromData(['name' => 'Desk lamp', 'stock' => 12])`.
+`fromData()` accepts an array, Laravel collection or other iterable and selects client-side mode. Pass `fromData([['name' => 'Desk lamp', 'stock' => 12]])` for a single row, or `fromData([])` for `{"data":[]}`.
 :::
 
-## 3. Add a derived field
+## 4. Optional: derive available stock
 
-Use `map()` to normalize rows from a collection or combine values from multiple sources. The callback receives each row as an object, even if the input rows are arrays.
+To subtract reserved stock, replace just the **JSON route** with this version. Keep the existing page route and imports:
 
 ```php
-use Rmunate\EasyDatatable\EasyDataTable;
+Route::get('/examples/catalog/data', function () {
+    $rows = collect([
+        ['name' => 'Desk lamp', 'stock' => 12, 'reserved' => 3],
+        ['name' => 'USB-C adapter', 'stock' => 4, 'reserved' => 4],
+    ]);
 
-$rows = collect([
-    ['name' => 'Desk lamp', 'stock' => 12, 'reserved' => 3],
-    ['name' => 'USB-C adapter', 'stock' => 4, 'reserved' => 4],
-]);
-
-return EasyDataTable::init()
-    ->fromData($rows)
-    ->map(fn ($row) => [
-        'name' => $row->name,
-        'stock' => max(0, $row->stock - $row->reserved),
-    ])
-    ->response();
+    return EasyDataTable::init()
+        ->fromData($rows)
+        ->map(fn ($row) => [
+            'name' => $row->name,
+            'stock' => max(0, $row->stock - $row->reserved),
+        ])
+        ->response();
+})->name('examples.catalog.data');
 ```
 
-The table still reads the same `name` and `stock` fields. Replace the array with a [query-backed catalog](../usage/client-side) when the source becomes a database.
+The mapper receives each row as an object, even when the input rows are arrays. Refresh the table: it now shows two products, with **9** desk lamps and **0** adapters. The array returned by `map()` still has `name` and `stock`, so the view does not change and `reserved` does not appear in the JSON.
+
+Next: [replace the array with a database query](../usage/client-side.md).

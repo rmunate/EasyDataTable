@@ -1,11 +1,10 @@
 ---
 title: Contributing
-editLink: true
-outline: deep
+description: Run the EasyDataTable package tests and preview documentation changes before opening a pull request.
 ---
 
 <script setup>
-import { VPTeamMembers } from 'vitepress/theme'
+import { VPTeamMembers } from 'vitepress/theme-without-fonts'
 
 const members = [
   {
@@ -56,31 +55,37 @@ const members = [
 
 # Contributing
 
-## How to Contribute to this Solution?
+Keep package examples, API behavior and the documentation in sync. A small pull request with a reproducible check is easier to review.
 
-If you see ways in which we can improve, change how we handle information, adjust pre-built blocks, or add new features, or even develop them yourself and add them.
+## Run the project locally
 
-We are eager to receive your pull requests!
+Fork and clone [EasyDataTable](https://github.com/rmunate/EasyDataTable), then work from the repository root. This repository is a Composer library, not a Laravel application.
 
-Simply fork the repository on GitHub and create pull requests (PRs) to the main branch once you have prepared your changes.
+::: code-group
 
-It is essential to provide a clear justification for the changes or new features, accompanied by a usage manual.
+```sh [PHP tests]
+composer install
+composer test
+```
 
-::: tip TEST
-Remember to test your code before submitting pull requests.
+```sh [Docs preview]
+npm ci
+npm run docs:dev
+```
 :::
 
-## Developers and Contributors
+PHP tests use an in-memory SQLite database and need `pdo_sqlite`. The docs workflow uses **Node.js 22**. Open the documentation URL printed by VitePress; the site is served under `/EasyDataTable/`. Run `npm run docs:build` to check the static build and internal page links before submitting a docs change.
+
+## Open a pull request
+
+1. Create a branch for one change. For a bug fix, add a focused regression test; for a behavior change, update the relevant [guide](../home.md), [reference](../reference/api.md) or copyable example.
+2. Open a pull request targeting `master`. Include the problem, what changed, and the checks you ran. For a visual change, show the result in light and dark mode or include screenshots.
+3. Check that the **test** and **docs** jobs pass. Pull requests are validated but do not deploy the site.
+
+## Developers and contributors
 
 <VPTeamMembers size="small" :members="members" />
 
-## License
-This project is under the [MIT License](https://choosealicense.com/licenses/mit/).
+## License and support
 
-🌟 Support My Projects! 🚀
-
-[![Become a Sponsor](https://img.shields.io/badge/-Become%20a%20Sponsor-blue?style=for-the-badge&logo=github)](https://github.com/sponsors/rmunate)
-
-Make any contributions you see fit; the code is entirely yours. Together, we can do amazing things and improve the world of development. Your support is invaluable. ✨
-
-If you have ideas, suggestions, or just want to collaborate, we are open to everything! Join our community and be part of our journey to success! 🌐👩‍💻👨‍💻
+EasyDataTable is released under the [MIT License](https://github.com/rmunate/EasyDataTable/blob/master/LICENSE.md). You can also [sponsor the maintainer](https://github.com/sponsors/rmunate).

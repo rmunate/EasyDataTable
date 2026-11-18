@@ -28,14 +28,21 @@ const matches = computed(() => {
 })
 const pageCount = computed(() => Math.max(1, Math.ceil(matches.value.length / pageSize)))
 const pageRows = computed(() => matches.value.slice(page.value * pageSize, (page.value + 1) * pageSize))
+
+function clearFilters() {
+    term.value = ''
+    status.value = ''
+    since.value = ''
+    page.value = 0
+}
 </script>
 
 <template>
-    <section class="leave-preview" aria-label="Interactive leave dashboard preview">
+    <section class="leave-preview" aria-labelledby="leave-preview-title">
         <div class="preview-header">
             <div>
-                <span class="eyebrow">INTERACTIVE PREVIEW</span>
-                <strong>Employee leave requests</strong>
+                <span class="eyebrow">INTERACTIVE SAMPLE</span>
+                <strong id="leave-preview-title">Employee leave requests</strong>
             </div>
             <span class="company">Company 10</span>
         </div>
@@ -59,12 +66,12 @@ const pageRows = computed(() => matches.value.slice(page.value * pageSize, (page
                     <input v-model="since" type="date" @input="page = 0">
                 </label>
             </div>
-            <dl class="preview-counts" aria-live="polite">
+            <dl class="preview-counts" aria-label="Response counts" aria-live="polite">
                 <div><dt>recordsTotal</dt><dd>{{ baseRows.length }}</dd></div>
                 <div><dt>recordsFiltered</dt><dd>{{ matches.length }}</dd></div>
                 <div><dt>data.length</dt><dd>{{ pageRows.length }}</dd></div>
             </dl>
-            <div class="preview-table">
+            <div class="preview-table" tabindex="0" role="region" aria-label="Scrollable leave request table">
                 <table aria-label="Leave requests on the current page">
                     <thead>
                         <tr>
@@ -83,10 +90,13 @@ const pageRows = computed(() => matches.value.slice(page.value * pageSize, (page
                     </tbody>
                 </table>
             </div>
-            <div class="preview-pagination" aria-label="Preview pagination">
-                <button type="button" :disabled="page === 0" @click="page--">Previous</button>
-                <span>Page {{ page + 1 }} of {{ pageCount }}</span>
-                <button type="button" :disabled="page + 1 >= pageCount" @click="page++">Next</button>
+            <div class="preview-footer">
+                <div class="preview-pagination" role="group" aria-label="Preview pagination">
+                    <button type="button" :disabled="page === 0" @click="page--">Previous</button>
+                    <span>Page {{ page + 1 }} of {{ pageCount }}</span>
+                    <button type="button" :disabled="page + 1 >= pageCount" @click="page++">Next</button>
+                </div>
+                <button class="clear-filters" type="button" @click="clearFilters">Clear filters</button>
             </div>
         </div>
     </section>
@@ -97,16 +107,19 @@ const pageRows = computed(() => matches.value.slice(page.value * pageSize, (page
     overflow: hidden;
     border: 1px solid var(--vp-c-divider);
     border-radius: 16px;
-    background: var(--vp-c-bg);
+    background: var(--edt-surface);
+    box-shadow: var(--edt-shadow);
 }
+
 .preview-header, .preview-body { padding: clamp(1rem, 3vw, 1.65rem); }
+
 .preview-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: .75rem;
-    background: linear-gradient(110deg, var(--vp-c-brand-soft), var(--vp-c-bg-soft));
+    background: linear-gradient(110deg, var(--vp-c-brand-soft), var(--edt-violet-soft));
     border-bottom: 1px solid var(--vp-c-divider);
 }
 .eyebrow, .preview-header strong { display: block; }
@@ -121,30 +134,51 @@ const pageRows = computed(() => matches.value.slice(page.value * pageSize, (page
     font-size: .8rem;
     font-weight: 600;
 }
-.preview-filters, .preview-counts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .65rem; }
-.preview-filters label, .preview-counts dt { font-size: .8rem; font-weight: 600; }
-.preview-filters :is(input, select), .preview-pagination button {
+
+.company {
+    background: var(--edt-surface);
     border: 1px solid var(--vp-c-divider);
+}
+
+.preview-filters, .preview-counts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .65rem; }
+.preview-filters label { font-size: .86rem; font-weight: 700; }
+
+.preview-filters :is(input, select), .preview-footer button {
+    min-width: 0;
+    min-height: 2.5rem;
+    border: 1px solid var(--vp-c-border);
     border-radius: 8px;
     background: var(--vp-c-bg-soft);
     padding: .45rem .65rem;
 }
+
 .preview-filters :is(input, select) { display: block; width: 100%; margin-top: .2rem; }
 .preview-counts { margin-block: 1rem; }
-.preview-counts > div { background: var(--vp-c-bg-soft); padding: .55rem .65rem; border-radius: 8px; }
-.preview-counts dt { color: var(--vp-c-text-2); overflow-wrap: anywhere; }
-.preview-counts dd { color: var(--vp-c-brand-1); font-size: 1.25rem; font-weight: 700; }
-.preview-table { overflow-x: auto; }
-.preview-table table { display: table; width: 100%; margin: 0; white-space: nowrap; }
+.preview-counts > div { background: var(--vp-c-brand-soft); padding: .55rem .65rem; border-radius: 8px; }
+.preview-counts dt { color: var(--vp-c-text-2); overflow-wrap: anywhere; font: .78rem/1.5 var(--vp-font-family-mono); }
+.preview-counts dd { margin: 0; color: var(--vp-c-brand-1); font-size: 1.4rem; font-weight: 700; }
+.preview-counts > div:nth-child(2) { background: var(--edt-violet-soft); }
+.preview-counts > div:nth-child(2) dd { color: var(--edt-violet); }
+.preview-counts > div:nth-child(3) { background: var(--edt-orange-soft); }
+.preview-counts > div:nth-child(3) dd { color: var(--edt-orange); }
+
+.preview-table { overflow-x: auto; border: 1px solid var(--vp-c-divider); border-radius: 8px; }
+.preview-table table { display: table; width: 100%; margin: 0; white-space: nowrap; font-size: .9rem; }
+.preview-table :is(th, td) { border: 0; padding: .55rem .7rem; }
+.preview-table tbody tr { border-top: 1px solid var(--vp-c-divider); }
 .preview-status { text-transform: capitalize; }
 .preview-status[data-status="pending"] { background: var(--vp-c-warning-soft); color: var(--vp-c-warning-1); }
 .preview-status[data-status="approved"] { background: var(--vp-c-success-soft); color: var(--vp-c-success-1); }
 .preview-status[data-status="rejected"] { background: var(--vp-c-danger-soft); color: var(--vp-c-danger-1); }
-.preview-pagination { display: flex; align-items: center; flex-wrap: wrap; gap: .65rem; margin-top: 1rem; font-size: .85rem; }
-.preview-pagination button:disabled { opacity: .5; cursor: not-allowed; }
-.preview-pagination button:not(:disabled):hover { border-color: var(--vp-c-brand-1); }
+
+.preview-footer, .preview-pagination { display: flex; align-items: center; flex-wrap: wrap; gap: .65rem; }
+.preview-footer { justify-content: space-between; margin-top: 1rem; font-size: .9rem; font-weight: 600; }
+.preview-footer button:disabled { opacity: .55; cursor: not-allowed; }
+.preview-footer button:not(:disabled):hover { border-color: var(--vp-c-brand-1); }
+.preview-footer .clear-filters { background: var(--vp-c-brand-soft); color: var(--vp-c-brand-1); }
 
 @media (max-width: 560px) {
-    .preview-filters { grid-template-columns: minmax(0, 1fr); }
+    .preview-filters, .preview-counts { grid-template-columns: minmax(0, 1fr); }
+    .preview-counts > div { display: flex; align-items: center; justify-content: space-between; gap: .65rem; }
 }
 </style>
