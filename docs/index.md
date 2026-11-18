@@ -2,28 +2,37 @@
 layout: home
 
 hero:
-  name: Easy
-  text: DataTable
-  tagline: A Fast and Efficient Way to Create Backend for Any Datatable in the PHP Laravel Framework 💻✨
+  name: EasyDataTable
+  text: From three rows to a dashboard
+  tagline: 'Use Laravel to power DataTables. Start with a PHP array, then add SQL paging, joins and role-aware actions.'
   image:
-    src: img/logo.png
+    src: /img/logo.png
     alt: EasyDataTable Logo
   actions:
     - theme: brand
-      text: Get Started
-      link: /home
+      text: Explore examples
+      link: /examples/
+    - theme: alt
+      text: Install for Laravel
+      link: /getting-started/installation
     - theme: alt
       text: View on GitHub
       link: https://github.com/rmunate/EasyDataTable
 
 features:
-  - icon: 🎨
-    title: Easy and Elegant Backend
-    details: Standardize your backend creation for any datatable in the frontend with Laravel using this package.
-  - icon: 🔍
-    title: Integrated with Query Builder
-    details: Conveniently create data queries to return to the frontend with Query Builder functionality.
-  - icon: ⚙️
-    title: Simple Usage Methods
-    details: Utilize a series of useful methods to process data before returning it to the frontend.
+  - icon: '01'
+    title: Your first table
+    details: Return three products without a database. Connect the JSON endpoint to a ready-to-copy Blade view.
+    link: /other-features/data-preparated
+    linkText: Build the catalog
+  - icon: '03'
+    title: Move the work to SQL
+    details: Let Laravel count, sort and search the result set while DataTables receives one page at a time.
+    link: /usage/server-side
+    linkText: Inspect a server-side draw
+  - icon: '04'
+    title: Build a leave dashboard
+    details: Join three tables, apply company scope and filters, and show review actions only to authorized users.
+    link: /usage/employee-leave
+    linkText: Explore the advanced example
 ---

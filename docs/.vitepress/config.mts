@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
     title: "EasyDataTable",
-    description: "A Quick and Efficient Way to Create the Backend for Any DataTable in the PHP Laravel Framework 💻✨",
+    description: 'Build DataTables endpoints in Laravel, from prepared data to SQL-backed dashboards.',
     lang: 'en-US',
     lastUpdated: true,
     base: '/EasyDataTable/',
@@ -17,8 +17,17 @@ export default defineConfig({
         logo: '/img/logo.png',
         nav: [
             {
-                text: 'Docs 3.0.0',
-                link: '/',
+                text: 'Guide',
+                link: '/home',
+            },
+            {
+                text: 'Examples',
+                link: '/examples/',
+                activeMatch: '^/(examples/|usage/|other-features/data-preparated)',
+            },
+            {
+                text: 'v3.0.0',
+                link: '/getting-started/changelog',
             }
         ],
         sidebar: [
@@ -32,17 +41,15 @@ export default defineConfig({
                     {text: 'Release Notes', link: '/getting-started/changelog'},
                 ]
             }, {
-                text: 'Usage',
-                collapsed: true,
+                text: 'Examples',
+                collapsed: false,
                 items: [
-                    {text: 'Client Side', link: '/usage/client-side'},
-                    {text: 'Server Side', link: '/usage/server-side'}
-                ]
-            }, {
-                text: 'Other Features',
-                collapsed: true,
-                items: [
-                    {text: 'Prepared Data', link: '/other-features/data-preparated'}
+                    {text: 'Overview & interactive preview', link: '/examples/'},
+                    {text: '01 · Prepared data', link: '/other-features/data-preparated'},
+                    {text: '02 · Client-side catalog', link: '/usage/client-side'},
+                    {text: '03 · Server-side catalog', link: '/usage/server-side'},
+                    {text: '04 · Employee leave dashboard', link: '/usage/employee-leave'},
+                    {text: '05 · Metronic integration', link: '/usage/metronic'},
                 ]
             },{
                 text: 'Contribute',
@@ -99,7 +106,7 @@ export default defineConfig({
         ],
         ['meta', {
                 property: 'og:description',
-                content: 'A Quick and Efficient Way to Create the Backend for Any DataTable in the PHP Laravel Framework 💻✨'
+                content: 'Build DataTables endpoints in Laravel, from prepared data to SQL-backed dashboards.'
             }
         ],
         ['meta', {

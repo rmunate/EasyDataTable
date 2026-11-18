@@ -10,6 +10,14 @@ With EasyDataTable, you can harness the power of Laravel's Query Builder to swif
 ## Documentation
 [![📖📖📖 **FULL DOCUMENTATION** 📖📖📖](https://img.shields.io/badge/FULL%20DOCUMENTATION-Visit%20Here-blue?style=for-the-badge)](https://rmunate.github.io/EasyDataTable/)
 
+### Learn by example
+
+- **Start small:** [prepared data](docs/other-features/data-preparated.md) and a [client-side catalog](docs/usage/client-side.md).
+- **Scale up:** [SQL-backed search and pagination](docs/usage/server-side.md) and a [company-scoped leave dashboard](docs/usage/employee-leave.md) with joins, status and date filters, and authorized actions.
+- **Integrate:** [Metronic](docs/usage/metronic.md), or copy the [Laravel examples and SQLite fixture](examples/README.md).
+
+Try the [interactive preview](https://rmunate.github.io/EasyDataTable/examples/#try-the-dashboard) to see how filters change the server-side counts.
+
 ## Installation
 
 Supports **Laravel 13.x with PHP 8.3+** and retains Laravel 8.x–12.x compatibility. See the [version matrix](docs/getting-started/versions.md) for per-major requirements.
