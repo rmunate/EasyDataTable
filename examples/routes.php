@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\LeaveTableController;
-
 // #region catalog
 use Illuminate\Support\Facades\Route;
 use Rmunate\EasyDatatable\EasyDataTable;
