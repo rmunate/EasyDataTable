@@ -11,6 +11,7 @@ trait Client
      * Accept integers and integer form values at or above the field's minimum.
      *
      * @param mixed $value Raw request value.
+     *
      * @throws DatatableException If the value is missing, malformed or out of range.
      */
     private function integerInput($value, string $key, int $min): int
@@ -44,8 +45,9 @@ trait Client
     /**
      * Resolve the first order instruction to its client-side data field.
      *
-     * @return string|null Null when the request does not specify an order column.
      * @throws DatatableException If the column index or field is invalid.
+     *
+     * @return string|null Null when the request does not specify an order column.
      */
     public function order(): ?string
     {
@@ -65,8 +67,9 @@ trait Client
     /**
      * Return the requested sort direction, defaulting to ascending.
      *
-     * @return 'asc'|'desc'
      * @throws DatatableException For directions other than ascending or descending.
+     *
+     * @return 'asc'|'desc'
      */
     public function direction(): string
     {
@@ -93,8 +96,10 @@ trait Client
      * Read a dot-separated field from the configured request.
      *
      * @param mixed $default Value used when the field is absent.
-     * @return mixed
+     *
      * @throws DatatableException If no request was configured.
+     *
+     * @return mixed
      */
     private function input(string $key, $default = null)
     {

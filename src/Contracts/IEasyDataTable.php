@@ -45,6 +45,7 @@ interface IEasyDataTable
      * Replace the query with prepared rows and select client-side mode.
      *
      * @param iterable $data A sequence of rows, not a single associative row.
+     *
      * @return $this
      */
     public function fromData(iterable $data);
@@ -70,8 +71,9 @@ interface IEasyDataTable
     /**
      * Generate the response for the datatable.
      *
-     * @return array{data: list<mixed>, draw?: int, recordsTotal?: int, recordsFiltered?: int}
      * @throws \Rmunate\EasyDatatable\Exceptions\DatatableException For invalid configuration or request fields.
+     *
+     * @return array{data: list<mixed>, draw?: int, recordsTotal?: int, recordsFiltered?: int}
      */
     public function response();
 }

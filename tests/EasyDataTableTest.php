@@ -40,9 +40,9 @@ final class EasyDataTableTest extends TestCase
     {
         $this->query->select('people.name AS label')->orderBy('id');
         $table = $this->server([
-            'length' => 1,
-            'search' => ['value' => '0'],
-            'order' => [['column' => '0', 'dir' => 'desc']],
+            'length'  => 1,
+            'search'  => ['value' => '0'],
+            'order'   => [['column' => '0', 'dir' => 'desc']],
             'columns' => [['data' => 'label']],
         ])->map(fn ($row) => $row->label);
         $expected = ['draw' => 2, 'recordsTotal' => 3, 'recordsFiltered' => 2, 'data' => ['C0']];
@@ -55,8 +55,8 @@ final class EasyDataTableTest extends TestCase
     public function testDefaultProjectionAndFlatRequestWithAllRemainingRows(): void
     {
         $table = $this->server([
-            'length' => '-1', 'start' => '1', 'search' => '0',
-            'order' => ['column' => 0, 'dir' => 'asc'],
+            'length'  => '-1', 'start' => '1', 'search' => '0',
+            'order'   => ['column' => 0, 'dir' => 'asc'],
             'columns' => [['data' => 'id']],
         ]);
         self::assertSame(['C0'], array_column($table->response()['data'], 'name'));
@@ -79,8 +79,10 @@ final class EasyDataTableTest extends TestCase
     /** An offset beyond the final row affects only the data array. */
     public function testEmptyPageDoesNotChangeTotals(): void
     {
-        self::assertSame(['draw' => 2, 'recordsTotal' => 3, 'recordsFiltered' => 3, 'data' => []],
-            $this->server(['start' => '10'])->response());
+        self::assertSame(
+            ['draw' => 2, 'recordsTotal' => 3, 'recordsFiltered' => 3, 'data' => []],
+            $this->server(['start' => '10'])->response()
+        );
     }
 
     /** A prepared iterable, including an empty one, replaces the client query. */
