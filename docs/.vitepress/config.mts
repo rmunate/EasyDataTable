@@ -9,7 +9,7 @@ export default defineConfig({
     themeConfig: {
         footer: {
             message: 'Released under the MIT License.',
-            copyright: 'Copyright © 2021-2024 Raul Mauricio Uñate'
+            copyright: 'Copyright © 2021-2026 Raul Mauricio Uñate'
         },
         editLink: {
             pattern: 'https://github.com/rmunate/EasyDataTable/edit/master/docs/:path'

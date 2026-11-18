@@ -14,6 +14,6 @@ outline: deep
 - `query()` and `fromData()` replace the previous source. Third-party implementations of `IEasyDataTable` must implement `fromData(iterable $data)`.
 - GitHub Actions runs SQLite integration tests and builds the documentation before deploying to Pages.
 
-## [2.0.0] - 2024-05-27
+## [2.0.0]
 
 - Adjusted to be compatible with Laravel 11
