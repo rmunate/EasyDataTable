@@ -1,44 +1,15 @@
----
-title: Assign
-editLink: true
-outline: deep
----
+# Prepared data
 
-# Assign Same Object
-
-There will surely be cases where the data you need to return to your table is the result of a series of processes and calculations performed in your backend. In these cases, we have provided the following option:
-
-Let's assume you have the following data to return to the frontend, and note that you can have it either in an `Array` or in a Laravel `Collection`:
+Use `fromData()` for rows you already have as an array, collection or other iterable. It selects client-side mode automatically. Pass a sequence of rows, not one associative row.
 
 ```php
-$data = [
-    "status"     => "A",
-    "name"       => "JOHN ALEJANDRO DIAZ PINILLA",
-    "birth_date" => "1993-11-30",
-    "shift"      => "SHIFT 235 HOURS"
-]
+use Rmunate\EasyDatatable\EasyDataTable;
 
-$data = new \Illuminate\Support\Collection([
-    "status"     => "A",
-    "name"       => "CARLOS GIOVANNY RODRIGUEZ TRIVIÑO",
-    "birth_date" => "1992-10-19",
-    "shift"      => "SHIFT 235 HOURS"
-])
+return EasyDataTable::init()
+    ->fromData([['name' => 'Ada'], ['name' => 'Lin']])
+    ->map(fn ($row) => ['name' => strtoupper($row->name)])
+    ->response();
+// ['data' => [['name' => 'ADA'], ['name' => 'LIN']]]
 ```
 
-Now, to pass this as values to return to the frontend, you can do it as follows:
-
-```php
-$dataTable = new EasyDataTable();
-$dataTable->fromData($data)
-$dataTable->map(function ($row) {
-    return [
-        "status"     => $row->status,
-        "name"       => $row->name,
-        "birth_date" => $row->birth_date,
-        "shift"      => $row->shift,
-    ];
-});
-```
-
-As you can see, we have used the `fromData` method to pass the data we had in either the `Array` or the `Collection`.
+With no `map()` callback, rows are returned unchanged in a zero-indexed list.

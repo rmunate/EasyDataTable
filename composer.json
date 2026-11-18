@@ -26,15 +26,14 @@
     }
   ],
   "require": {
-    "php": "^7.4|^8.0",
-    "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0"
+    "php": "^7.4 || ^8.0",
+    "illuminate/database": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0",
+    "illuminate/http": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0"
   },
-  "require-dev": {},
-  "extra": {
-    "branch-alias": {
-      "dev-main": "1.0.x-dev"
-    }
+  "require-dev": {
+    "phpunit/phpunit": "^9.6 || ^10.5 || ^11.5 || ^12.0"
   },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+  "scripts": {
+    "test": "phpunit --bootstrap vendor/autoload.php tests"
+  }
 }

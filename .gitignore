@@ -1,20 +1,10 @@
-# Ignore common macOS files and directories
 **/.DS_Store
-
-# Ignore automatically generated files and directories
 /vendor/
 /.fleet
 /.idea
 /.vscode
-
-# Ignore Composer generated directory and files
-/vendor
-
-# Ignore development tool generated files and directories
-.fleet
-.idea
-.vscode
 composer.lock
+.phpunit.result.cache
 
 # Node
 node_modules

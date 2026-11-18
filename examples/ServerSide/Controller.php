@@ -1,7 +1,12 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Rmunate\EasyDatatable\EasyDataTable;
 
+/** Example endpoint that filters and pages permitted rows in the database. */
 class NameController extends Controller
 {
     /**
@@ -17,6 +22,7 @@ class NameController extends Controller
         $query = DB::table('novedades')
             ->leftJoin('tipo_novedades', 'tipo_novedades.id', '=', 'novedades.tipo_novedad_id')
             ->leftJoin('empleados', 'empleados.id', '=', 'novedades.empleado_id')
+            ->where('empleados.empresa', $request->user()->company)
             ->select(
                 'empleados.cedula AS identification',
                 'empleados.nombre AS employee',
@@ -32,7 +38,7 @@ class NameController extends Controller
          * ES: (Opcional) A veces, para determinar si un usuario tiene permisos sobre alguna acción en las filas de la tabla, debes realizar consultas como estas.
          * EN: (Optional) Sometimes, to determine if a user has permissions for some action on the table rows, you need to make queries like these.
          */
-        $permissionEdit = Auth::user()->can('novedades.editar'); /* (Opcional) */
+        $permissionEdit = $request->user()->can('novedades.editar');
 
         /**
          * ES: El uso de la librería es tan simple como emplear el siguiente código.
@@ -42,7 +48,7 @@ class NameController extends Controller
         $datatable->serverSide(); /* Obligatorio / Requerid */
         $datatable->request($request);
         $datatable->query($query);
-        $datatable->map(function ($row) use ($editar) {
+        $datatable->map(function ($row) use ($permissionEdit) {
             /**
              * ES: (Opcional) Si necesitas personalizar la forma en que se visualiza la información en la tabla, el método map() será de gran ayuda.
              * Además, si necesitas enviar datos adicionales o realizar validaciones, aquí puedes aplicar la lógica.
@@ -65,7 +71,7 @@ class NameController extends Controller
                 'initial_date'   => date('d/m/Y', strtotime($row->initial_date)),
                 'final_date'     => date('d/m/Y', strtotime($row->final_date)),
                 'action'         => [
-                    'editar' => $editar,
+                    'editar' => $permissionEdit,
                 ],
             ];
         });

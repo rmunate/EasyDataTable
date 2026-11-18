@@ -1,7 +1,12 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Rmunate\EasyDatatable\EasyDataTable;
 
+/** Example endpoint that returns all permitted rows for browser-side processing. */
 class NameController extends Controller
 {
     /**
@@ -27,13 +32,13 @@ class NameController extends Controller
                 'novedades.fecha_inicial AS initial_date',
                 'novedades.fecha_final AS final_date'
             )
-            ->where('empleados.empresa', $request->company);
+            ->where('empleados.empresa', $request->user()->company);
 
         /**
          * ES: (Opcional) A veces, para determinar si un usuario tiene permisos sobre alguna acción en las filas de la tabla, debes realizar consultas como estas.
          * EN: (Optional) Sometimes, to determine if a user has permissions for some action on the table rows, you need to make queries like these.
          */
-        $permissionEdit = Auth::user()->can('novedades.editar');
+        $permissionEdit = $request->user()->can('novedades.editar');
 
         /**
          * ES: El uso de la librería es tan simple como emplear el siguiente código.

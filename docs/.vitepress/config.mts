@@ -5,19 +5,19 @@ export default defineConfig({
     description: "A Quick and Efficient Way to Create the Backend for Any DataTable in the PHP Laravel Framework 💻✨",
     lang: 'en-US',
     lastUpdated: true,
-    base: '/EasyDataTable',
+    base: '/EasyDataTable/',
     themeConfig: {
         footer: {
             message: 'Released under the MIT License.',
             copyright: 'Copyright © 2021-2024 Raul Mauricio Uñate'
         },
         editLink: {
-            pattern: 'https://github.com/rmunate/EasyDataTable/tree/main/docs/:path'
+            pattern: 'https://github.com/rmunate/EasyDataTable/edit/master/docs/:path'
         },
         logo: '/img/logo.png',
         nav: [
             {
-                text: 'Docs ^2.1',
+                text: 'Docs 3.0.0',
                 link: '/',
             }
         ],
@@ -42,7 +42,7 @@ export default defineConfig({
                 text: 'Other Features',
                 collapsed: true,
                 items: [
-                    {text: 'Data Preparated', link: '/other-features/data-preparated'}
+                    {text: 'Prepared Data', link: '/other-features/data-preparated'}
                 ]
             },{
                 text: 'Contribute',
@@ -54,7 +54,7 @@ export default defineConfig({
             }
         ],
         socialLinks: [
-            {icon: 'github', link: 'https://github.com/rmunate/PHP2JS'}
+            {icon: 'github', link: 'https://github.com/rmunate/EasyDataTable'}
         ],
         search: {
             provider: 'local'

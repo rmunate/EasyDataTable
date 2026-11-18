@@ -1,4 +1,4 @@
-# EasyDataTable:
+# EasyDataTable 3.0.0
 **A Fast and Efficient Way to Create BackEnd for Any DataTable in the Laravel PHP Framework**
 
 ![LOGO](https://github.com/rmunate/EasyDataTable/assets/91748598/f05bac16-8619-4181-a994-10837c00b5d4)
@@ -12,19 +12,18 @@ With EasyDataTable, you can harness the power of Laravel's Query Builder to swif
 
 ## Installation
 
-When you wish to use this solution, you must ensure the following:
-
-**PHP:** Version equal to or higher than 7.4
-[![Laravel 8.0+](https://img.shields.io/badge/PHP-7.4%2B-orange.svg)](https://laravel.com)
-
-**Laravel Framework:** Version equal to or higher than 8.0
-[![Laravel 8.0+](https://img.shields.io/badge/Laravel-8.0%2B-orange.svg)](https://laravel.com)
-
-To install the dependency via Composer, run the following command:
+Supports **Laravel 13.x with PHP 8.3+** and retains Laravel 8.x–12.x compatibility. See the [version matrix](docs/getting-started/versions.md) for per-major requirements.
 
 ```shell
-composer require rmunate/easy-datatable
+composer require "rmunate/easy-datatable:^3.0"
 ```
+
+## Testing and release
+
+Run `composer install` and `composer test` with `pdo_sqlite` enabled. To reproduce the Pages build, run `npm ci` and `npm run docs:build`.
+
+The [GitHub Actions workflow](.github/workflows/deploy.yml) checks pull requests and `master`. Select **Settings → Pages → Build and deployment → Source: GitHub Actions**. A successful run on `master` deploys the documentation; pull requests never deploy. For the Composer release, tag the verified commit `v3.0.0` and push the tag. Packagist obtains the version from Git; verify that its repository webhook or package update is enabled.
+
 ## License
 This project is under the [MIT License](https://choosealicense.com/licenses/mit/).
 

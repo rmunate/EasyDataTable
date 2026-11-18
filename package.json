@@ -1,6 +1,9 @@
 {
+  "name": "easy-datatable-docs",
+  "private": true,
+  "version": "3.0.0",
   "devDependencies": {
-    "vitepress": "^1.2.2"
+    "vitepress": "^1.6.4"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs",

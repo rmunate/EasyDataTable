@@ -1,17 +1,13 @@
----
-title: Versions
-editLink: true
-outline: deep
----
-
 # Versions
 
-During the development of this solution, multiple tool versions were released. It's crucial to note that previous versions are NOT compatible with the latest update. This documentation is tailored specifically for the usage of the current version.
+These docs describe EasyDataTable **3.0.0**. Composer selects compatible Illuminate components for the application's Laravel major.
 
-We highly recommend migrating from older versions to the latest release, as no support is provided for any previous versions.
+| Laravel | Minimum PHP for that major |
+| --- | --- |
+| 13.x | 8.3 |
+| 11.x, 12.x | 8.2 |
+| 10.x | 8.1 |
+| 9.x | 8.1 with currently installable Symfony dependencies |
+| 8.x | 7.4 for EasyDataTable |
 
-| Version                                                | Release Date | End of Support Date |
-|--------------------------------------------------------|--------------|---------------------|
-| ^0.1 &nbsp; <Badge type="danger" text='Deprecated' />  | 2021-10-21   | 2021-12-31          |
-| ^1.0 &nbsp; <Badge type="danger" text='Deprecated' />  | 2022-01-01   | 2024-05-26          |
-| ^2.0 &nbsp; <Badge type="tip" text='Current' />        | 2024-05-27   | Undefined           |
+Compatibility with older versions is not a recommendation to run end-of-life PHP or Laravel releases. Future Laravel majors are not declared compatible until tested.
